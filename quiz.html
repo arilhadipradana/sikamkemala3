@@ -1,0 +1,582 @@
+<html>
+    <head>
+        <title>QUIZ</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+        <!-- NAVIGATION BAR -->
+        <div class="container-navbar">
+          <ul class="ul-navbar">
+            <li class="li-navbar">
+                <a href="index.html" class="a-navbar">HOME</a>
+            </li>
+            <li class="li-navbar">
+                <a href="about.html" class="a-navbar">SDL</a>
+            </li>
+                                <li class="li-navbar">
+                <a href="quiz.html" class="a-navbar">QUIZ</a>
+            </li>   
+                                                        <li class="li-navbar">
+                <a href="kepoin.html" class="a-navbar">KEPO-IN</a>
+            </li>   
+                                     <li class="li-navbar">
+                <a href="simulasi.html" class="a-navbar">SIMULASI</a>
+            </li>
+             <li class="li-navbar">
+                <a href="geo-ict.html" class="a-navbar">GEOICT</a>
+            </li>
+            <li class="li-navbar">
+                <a href="aman.html" class="a-navbar">AMAN</a>
+            </li>
+            <li class="li-navbar">
+                <a href="contact.html" class="a-navbar">DISKUSI YUK</a>
+            </li>
+          </ul>
+        </div>
+        <!-- NAVIGATION BAR SELESAI -->
+
+        <!-- CONTENT 1 -->
+<div class="geoict-quiz-wrapper">
+    <style>
+        .geoict-quiz-wrapper {
+            --quiz-primary: #1a365d;
+            --quiz-secondary: #3182ce;
+            --quiz-danger: #e53e3e;
+            --quiz-success: #38a169;
+            --quiz-bg: #f7fafc;
+            --quiz-text: #2d3748;
+            
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .geoict-quiz-wrapper * { box-sizing: border-box; }
+        .quiz-header {
+            background-color: var(--quiz-primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .quiz-header h1 { margin: 0 0 10px 0; font-size: 2em; color: white; }
+        .quiz-header p { margin: 0; opacity: 0.9; color: #e2e8f0; }
+        .progress-bar {
+            height: 8px;
+            background-color: #e2e8f0;
+            width: 100%;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: var(--quiz-secondary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .quiz-body { padding: 40px; }
+        .question-number {
+            font-weight: bold;
+            color: var(--quiz-secondary);
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .question-text {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            color: var(--quiz-text);
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .option-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 1em;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--quiz-text);
+            width: 100%;
+        }
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--quiz-secondary);
+            background-color: #ebf8ff;
+        }
+        .option-btn:disabled { cursor: not-allowed; }
+        .option-btn.correct {
+            background-color: #f0fff4;
+            border-color: var(--quiz-success);
+            color: #22543d;
+            font-weight: 600;
+        }
+        .option-btn.incorrect {
+            background-color: #fff5f5;
+            border-color: var(--quiz-danger);
+            color: #742a2a;
+        }
+        .feedback-box {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .feedback-box.show { display: block; }
+        .feedback-title { font-weight: bold; margin-bottom: 10px; font-size: 1.1em; }
+        .next-btn {
+            margin-top: 25px;
+            background-color: var(--quiz-primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            display: none;
+            float: right;
+            font-weight: 600;
+        }
+        .next-btn:hover { background-color: #2a4365; }
+        .result-container { text-align: center; display: none; }
+        .score-circle {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            background: #f7fafc;
+            border: 10px solid var(--quiz-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: bold;
+            color: var(--quiz-primary);
+            margin: 0 auto 30px auto;
+        }
+        .conclusion-box {
+            background: #ebf8ff;
+            border-left: 5px solid var(--quiz-secondary);
+            padding: 25px;
+            text-align: left;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            color: var(--quiz-text);
+        }
+        .quiz-body::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h1>Quiz Spatial Disaster Literacy</h1>
+        <p>Uji Kemampuan Analisis Spasial & Pengambilan Keputusan Mitigasi Bencana</p>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="geoict-progress"></div></div>
+    
+    <div class="quiz-body" id="geoict-quiz-playboard">
+        <span class="question-number" id="geoict-q-number">Pertanyaan 1 dari 25</span>
+        <div class="question-text" id="geoict-q-text">Memuat pertanyaan...</div>
+        <div class="options-grid" id="geoict-options-box"></div>
+        
+        <div class="feedback-box" id="geoict-feedback-box">
+            <div class="feedback-title" id="geoict-feedback-title"></div>
+            <div id="geoict-feedback-text"></div>
+        </div>
+        
+        <button class="next-btn" id="geoict-next-btn" onclick="geoictNextQuestion()">Selanjutnya &raquo;</button>
+    </div>
+
+    <div class="quiz-body result-container" id="geoict-result-container">
+        <h2>Simpulan Analisis Literasi Spasial Anda</h2>
+        <div class="score-circle" id="geoict-final-score">0</div>
+        <div class="conclusion-box" id="geoict-conclusion-text"></div>
+        <button class="option-btn" style="background: var(--quiz-primary); color: white; border: none; display: inline-block; text-align: center; font-weight: 600;" onclick="geoictResetQuiz()">Ulangi Asesmen</button>
+    </div>
+
+    <script>
+        const geoictQuizData = [
+            {
+                question: "1. (Tsunami) Sebuah kawasan pesisir berada pada elevasi 5 mdpl. Pemodelan menunjukkan tinggi rayapan (run-up) tsunami mencapai 12 meter. Titik kumpul terdekat berada di bukit elevasi 25 mdpl dengan jarak horizontal 800 meter. Jika kecepatan lari warga rata-rata 2 m/s dan gelombang tiba dalam 5 menit setelah gempa, apakah warga akan selamat?",
+                options: [
+                    { text: "Ya, karena warga hanya membutuhkan waktu 4 menit (240 detik) untuk mencapai titik aman.", isCorrect: false },
+                    { text: "Tidak, karena warga membutuhkan waktu 400 detik (6,6 menit) untuk mencapai titik kumpul, lebih lambat dari kedatangan gelombang.", isCorrect: true },
+                    { text: "Ya, karena elevasi awal warga sudah 5 mdpl sehingga aman dari rayapan 12 meter.", isCorrect: false },
+                    { text: "Tidak, karena titik kumpul di elevasi 25 mdpl masih berada dalam zona rendaman gelombang.", isCorrect: false }
+                ],
+                pembahasan: "Waktu tempuh = Jarak / Kecepatan = 800m / 2m/s = 400 detik (6,6 menit). Waktu tiba gelombang = 5 menit (300 detik). Warga akan tersapu gelombang sebelum tiba di titik kumpul."
+            },
+            {
+                question: "2. (Longsor) Peta kontur menunjukkan jarak horizontal antara dua titik adalah 200 meter, sedangkan perbedaan ketinggiannya adalah 60 meter. Berapa persentase kemiringan lerengnya, dan apakah area ini aman untuk relokasi pemukiman berdasarkan batas kritis longsor (>30%)?",
+                options: [
+                    { text: "Kemiringan 30%, area berada di batas kritis dan harus dihindari.", isCorrect: true },
+                    { text: "Kemiringan 3,3%, area sangat aman untuk relokasi.", isCorrect: false },
+                    { text: "Kemiringan 120%, area sangat berbahaya.", isCorrect: false },
+                    { text: "Kemiringan 60%, area aman asalkan ditanami pohon.", isCorrect: false }
+                ],
+                pembahasan: "Kemiringan (%) = (Beda Tinggi / Jarak Horizontal) x 100% = (60 / 200) x 100% = 30%. Sesuai kriteria geomorfologi, lereng >=30% masuk zona kerentanan gerakan tanah menengah-tinggi."
+            },
+            {
+                question: "3. (Banjir) Wilayah A memiliki luas 10 km persegi dengan kepadatan penduduk 8.000 jiwa/km persegi. Hasil overlay peta menunjukkan 25% wilayah tersebut masuk dalam zona merah genangan banjir >1,5 meter. Jika 30% penduduk di zona merah adalah balita dan lansia, berapa estimasi perahu karet yang dibutuhkan jika 1 perahu berkapasitas 10 orang khusus evakuasi kelompok rentan?",
+                options: [
+                    { text: "800 perahu", isCorrect: false },
+                    { text: "600 perahu", isCorrect: true },
+                    { text: "2.000 perahu", isCorrect: false },
+                    { text: "20.000 perahu", isCorrect: false }
+                ],
+                pembahasan: "Total populasi = 10 x 8.000 = 80.000 jiwa. Populasi di zona merah = 25% x 80.000 = 20.000 jiwa. Kelompok rentan = 30% x 20.000 = 6.000 jiwa. Jumlah perahu = 6.000 / 10 = 600 perahu."
+            },
+            {
+                question: "4. (Gempa) Seismograf di stasiun pengamat mencatat Gelombang P tiba pukul 10.05.20 WIB dan Gelombang S tiba pukul 10.06.35 WIB. Menggunakan data selisih gelombang sebesar 75 detik dan kecepatan rambat efektif konstan 8 km/detik, berapakah perkiraan radius jarak episentrum gempa dari stasiun tersebut?",
+                options: [
+                    { text: "1.150 km", isCorrect: false },
+                    { text: "600 km", isCorrect: true },
+                    { text: "750 km", isCorrect: false },
+                    { text: "150 km", isCorrect: false }
+                ],
+                pembahasan: "Jarak Episentrum = Selisih waktu S-P x Kecepatan rambat = 75 detik x 8 km/detik = 600 km dari stasiun pengamat."
+            },
+            {
+                question: "5. (Vulkanologi) Gunung berapi meletus mengeluarkan kolom abu setinggi 10 km. Angin bertiup ke arah Tenggara dengan kecepatan konstan 40 km/jam. Jika Bandara Internasional berada sejauh 60 km di arah Tenggara dari kawah, kapan bandara tersebut harus ditutup sebelum abu vulkanik pertama tiba?",
+                options: [
+                    { text: "Dalam waktu 1,5 jam setelah erupsi", isCorrect: true },
+                    { text: "Dalam waktu 2,5 jam setelah erupsi", isCorrect: false },
+                    { text: "Bandara aman karena berada di arah Barat Laut", isCorrect: false },
+                    { text: "Tidak perlu ditutup karena elevasi bandara rendah", isCorrect: false }
+                ],
+                pembahasan: "Waktu tiba = Jarak / Kecepatan angin = 60 km / 40 km/jam = 1,5 jam. Mengidentifikasi arah angin (Tenggara) sejalan dengan lokasi bandara sangat krusial dalam navigasi penerbangan."
+            },
+            {
+                question: "6. (Kenaikan Muka Air Laut) Sebuah kota pesisir memiliki laju penurunan tanah (subsidence) 5 cm/tahun dan kenaikan muka air laut global 5 mm/tahun. Jika tanggul laut saat ini memiliki tinggi sisa bebas (freeboard) 1,1 meter, dalam berapa tahun tanggul tersebut akan terlimpasi oleh air laut rata-rata?",
+                options: [
+                    { text: "10 tahun", isCorrect: false },
+                    { text: "20 tahun", isCorrect: true },
+                    { text: "50 tahun", isCorrect: false },
+                    { text: "100 tahun", isCorrect: false }
+                ],
+                pembahasan: "Total perubahan relatif = Penurunan tanah + Kenaikan laut = 5 cm + 0,5 cm = 5,5 cm/tahun = 0,055 m/tahun. Waktu tanggul terlimpasi = 1,1 meter / 0,055 m/tahun = 20 tahun."
+            },
+            {
+                question: "7. (Evakuasi Spasial) Lebar jalan evakuasi efektif adalah 4 meter. Menurut standar, kapasitas laju pejalan kaki panik adalah 1,5 orang/meter/detik. Berapa waktu minimal yang diperlukan untuk mengevakuasi 3.600 penduduk melalui jalan ini tanpa terjadi bottleneck?",
+                options: [
+                    { text: "600 detik (10 menit)", isCorrect: true },
+                    { text: "3.600 detik (1 jam)", isCorrect: false },
+                    { text: "2.400 detik (40 menit)", isCorrect: false },
+                    { text: "150 detik (2,5 menit)", isCorrect: false }
+                ],
+                pembahasan: "Kapasitas aliran jalan = Lebar x laju = 4 m x 1,5 = 6 orang/detik. Waktu total = Jumlah populasi / Kapasitas aliran = 3600 / 6 = 600 detik (10 menit)."
+            },
+            {
+                question: "8. (Likuifaksi) Overlay peta geologi dan muka air tanah menunjukkan sebuah perumahan berdiri di atas endapan pasir lepas dengan kedalaman muka air tanah dangkal (1,5 meter). Pada skenario gempa M 7.0, tindakan zonasi ruang yang paling tepat untuk area ini adalah?",
+                options: [
+                    { text: "Membangun tanggul tinggi di sekitar perumahan.", isCorrect: false },
+                    { text: "Menetapkan sebagai zona merah (non-hunian) karena potensi likuifaksi ekstrem.", isCorrect: true },
+                    { text: "Mengizinkan pembangunan asal pondasi terbuat dari kayu.", isCorrect: false },
+                    { text: "Mengurangi kepadatan penduduk dengan membangun apartemen tinggi.", isCorrect: false }
+                ],
+                pembahasan: "Pasir lepas belum terkonsolidasi + muka air tanah dangkal + pemicu gempa besar adalah indikator utama likuifaksi fatal. Area ini tidak layak untuk hunian."
+            },
+            {
+                question: "9. (Kebakaran Hutan) Titik api terpantau di lereng bukit menghadap ke Selatan. Angin bertiup kencang ke arah Utara. Faktor spasial mana yang akan membuat penyebaran api membesar secara eksponensial?",
+                options: [
+                    { text: "Arah pergerakan api (Utara) sejalan dengan kemiringan lereng yang menanjak (up-slope).", isCorrect: true },
+                    { text: "Vegetasi di lembah lebih basah.", isCorrect: false },
+                    { text: "Angin bertiup ke arah sungai.", isCorrect: false },
+                    { text: "Titik api berada di ketinggian di atas awan.", isCorrect: false }
+                ],
+                pembahasan: "Api menjalar jauh lebih cepat ke arah menanjak (up-slope) karena radiasi panas naik mengeringkan vegetasi di atasnya. Dorongan angin ke arah utara (naik lereng) memicu penyebaran eksponensial."
+            },
+            {
+                question: "10. (Hidrologi - Debit Sungai) Area tangkapan air seluas 50 km persegi menerima hujan ekstrem 100 mm dalam 1 jam. Jika koefisien limpasan permukaan akibat deforestasi adalah 0,8, berapakah volume air yang mengalir menjadi debit banjir? (1 mm = 1 liter/m2)",
+                options: [
+                    { text: "4.000.000 meter kubik", isCorrect: true },
+                    { text: "5.000.000 meter kubik", isCorrect: false },
+                    { text: "800.000 meter kubik", isCorrect: false },
+                    { text: "40.000 meter kubik", isCorrect: false }
+                ],
+                pembahasan: "Volume = Luas (50.000.000 m2) x Tinggi Hujan (0,1 m) x Koefisien Limpasan (0,8) = 4.000.000 meter kubik."
+            },
+            {
+                question: "11. (Buffer Spasial GIS) Pabrik kimia amonia meledak akibat gempabumi. Gas beracun menyebar membentuk lingkaran dengan radius bertambah 500 meter setiap menit. Jika sekolah berjarak 3 km dari pabrik, berapa waktu aman (golden time) untuk evakuasi mandiri / lock-down?",
+                options: [
+                    { text: "6 menit", isCorrect: true },
+                    { text: "15 menit", isCorrect: false },
+                    { text: "30 menit", isCorrect: false },
+                    { text: "1 jam", isCorrect: false }
+                ],
+                pembahasan: "Waktu = Jarak / Kecepatan penyebaran = 3000 meter / 500 meter/menit = 6 menit."
+            },
+            {
+                question: "12. (Batimetri Tsunami) Gelombang tsunami menjalar dari samudera dalam (kedalaman 4000m) menuju paparan benua dangkal (kedalaman 50m). Hukum kekekalan energi menyatakan apa yang akan terjadi pada gelombang saat perbedaan kedalaman spasial ini memendek?",
+                options: [
+                    { text: "Kecepatan gelombang bertambah, amplitudo mengecil.", isCorrect: false },
+                    { text: "Kecepatan gelombang menurun, amplitudo (tinggi gelombang) membesar.", isCorrect: true },
+                    { text: "Kecepatan gelombang stabil, panjang gelombang memanjang.", isCorrect: false },
+                    { text: "Energi gelombang terserap oleh dasar laut sehingga tsunami menghilang.", isCorrect: false }
+                ],
+                pembahasan: "Ini disebut efek Tsunami Shoaling. Saat kedalaman berkurang, kecepatan runtuh sehingga energi ditransfer menjadi penambahan tinggi gelombang (amplitudo) secara masif."
+            },
+            {
+                question: "13. (Resonansi Bangunan) Peta mikrozonasi gempa menunjukkan tanah sedimen lunak memiliki periode dominan alami (Tg) sebesar 1,5 detik. Bangunan dengan karakteristik spasial seperti apa yang paling rentan mengalami kerusakan akibat fenomena resonansi di atas tanah tersebut?",
+                options: [
+                    { text: "Rumah tapak 1 lantai (periode alami 0,1 detik).", isCorrect: false },
+                    { text: "Bangunan apartemen tinggi 15 lantai (periode alami sekitar 1,5 detik).", isCorrect: true },
+                    { text: "Menara telekomunikasi baja sangat kaku.", isCorrect: false },
+                    { text: "Bunker bawah tanah beton tebal.", isCorrect: false }
+                ],
+                pembahasan: "Resonansi destruktif terjadi jika periode alami gedung (estimasi: 0,1 x jumlah lantai) setara dengan periode getar tanah. 15 lantai x 0,1 = 1,5 detik, memicu amplifikasi guncangan maksimum."
+            },
+            {
+                question: "14. (Remote Sensing Bencana) Dalam pemetaan cepat pasca banjir bandang, citra satelit optik terhambat tutupan awan tebal. Teknologi sensor spasial mana yang paling tepat digunakan untuk mendelineasi luas genangan banjir menembus awan secara real-time?",
+                options: [
+                    { text: "Satelit Thermal (Inframerah)", isCorrect: false },
+                    { text: "Radar / SAR (Synthetic Aperture Radar) seperti Sentinel-1", isCorrect: true },
+                    { text: "Drone Kamera RGB biasa", isCorrect: false },
+                    { text: "Sensor Lidar berbasis pesawat terbang rendah", isCorrect: false }
+                ],
+                pembahasan: "Satelit radar (SAR) memancarkan gelombang mikro yang mampu menembus awan dan mendeteksi permukaan air secara akurat karena sifat pantulannya (backscatter) yang khas."
+            },
+            {
+                question: "15. (Kapasitas Shelter) GOR kota dengan luas 4.000 meter persegi ditetapkan sebagai tempat pengungsian. Standar internasional minimum ruang hidup adalah 3,5 meter persegi per orang. Jika shelter menampung 1.000 pengungsi dengan fasilitas 10 unit toilet, penilaian kelayakan spasialnya adalah?",
+                options: [
+                    { text: "Ya, karena luas mencukupi dan toilet berlebih.", isCorrect: false },
+                    { text: "Tidak, ruang hidup tidak cukup meskipun toilet cukup.", isCorrect: false },
+                    { text: "Ya, luas sangat pas, hanya toilet kurang sedikit.", isCorrect: false },
+                    { text: "Tidak, luas ruang memenuhi (4 m2/orang), tetapi sanitasi toilet tidak layak (standar minimum 1 toilet untuk 20 orang).", isCorrect: true }
+                ],
+                pembahasan: "Luas mencukupi (4000/1000 = 4 m2 per orang). Namun rasio toilet buruk (10 toilet untuk 1000 orang = 1:100). Standar kemanusiaan menetapkan minimal 1 toilet per 20 jiwa."
+            },
+            {
+                question: "16. (Geomorfologi Pantai) Pesisir bertebing karang mengalami laju erosi spasial rata-rata 1 meter/tahun. Sebuah bangunan infrastruktur vital saat ini berjarak 15 meter dari bibir tebing. Apa keputusan mitigasi jangka panjang yang paling rasional?",
+                options: [
+                    { text: "Membangun tanggul beton berat di bawah tebing.", isCorrect: false },
+                    { text: "Merencanakan relokasi bangunan mundur (managed retreat) sebelum kurun waktu 15 tahun.", isCorrect: true },
+                    { text: "Menanam bibit mangrove di dasar tebing.", isCorrect: false },
+                    { text: "Mengecat dinding gedung dengan cairan anti korosi air laut.", isCorrect: false }
+                ],
+                pembahasan: "Menahan abrasi tebing tinggi (cliff) sangat mahal dan berisiko gagal secara struktural. Langkah non-struktural melalui 'Managed Retreat' (mundur terencana) adalah solusi tata ruang terbijak."
+            },
+            {
+                question: "17. (Logistik Jaringan) Armada logistik krisis harus menempuh jalur alternatif karena rute utama terputus. Jalur alternatif terdiri dari Sektor X (8 km, kecepatan rata-rata akibat kerusakan jalan 20 km/jam) dan Sektor Y (12 km, kecepatan rata-rata 40 km/jam). Berapakah total waktu tempuh jalur evakuasi tersebut?",
+                options: [
+                    { text: "30 menit", isCorrect: false },
+                    { text: "42 menit", isCorrect: true },
+                    { text: "55 menit", isCorrect: false },
+                    { text: "60 menit", isCorrect: false }
+                ],
+                pembahasan: "Waktu Sektor X = 8/20 = 0,4 jam (24 menit). Waktu Sektor Y = 12/40 = 0,3 jam (18 menit). Total waktu = 24 + 18 = 42 menit."
+            },
+            {
+                question: "18. (Overlay Risiko SIG) Anda ditugaskan mengidentifikasi bangunan yang melanggar batas aman patahan aktif bumi. Operasi analisis spasial (geoprocessing) apa pada SIG yang paling tepat digunakan untuk menyaring pemukiman di dalam zona buffer patahan tersebut?",
+                options: [
+                    { text: "Erase", isCorrect: false },
+                    { text: "Intersect", isCorrect: true },
+                    { text: "Union", isCorrect: false },
+                    { text: "Merge", isCorrect: false }
+                ],
+                pembahasan: "Fungsi INTERSECT memotong dua layer data dan hanya mempertahankan area tumpang tindih di mana kedua kondisi (Zona Bahaya Patahan DAN Eksistensi Pemukiman) terpenuhi."
+            },
+            {
+                question: "19. (Aliran Vulkanik) Sebuah kubah lava bervolume besar tidak stabil berada di atas kawah. Di bawah lembah kawah terdapat alur sungai berbentuk V yang mengalir menuju pemukiman berjarak 8 km. Mengapa wilayah sepanjang sempadan sungai ini dilarang mutlak untuk pemukiman?",
+                options: [
+                    { text: "Karena sungai berpotensi meluap saat hujan biasa.", isCorrect: false },
+                    { text: "Karena aliran awan panas (piroklastik) didorong gravitasi dan densitas tinggi akan mengalir mengikuti jalur topografi terendah (lembah sungai) dengan kecepatan tinggi.", isCorrect: true },
+                    { text: "Karena struktur tanah lembah sungai selalu basah.", isCorrect: false },
+                    { text: "Karena arah angin gunung selalu bertiup vertikal di atas lembah.", isCorrect: false }
+                ],
+                pembahasan: "Aliran piroklastik merupakan suspensi gas dan batuan berdensitas tinggi yang dipandu secara spasial oleh morfologi terendah (lembah/sungai). Kecepatannya yang destruktif melarang pemukiman berada dijalurnya."
+            },
+            {
+                question: "20. (Meteorologi Spasial) Pusat badai tekanan rendah (Siklon Tropis) terbentuk di Samudera Hindia (Belahan Bumi Selatan). Berdasarkan efek Coriolis, arah sirkulasi angin adalah searah jarum jam. Dampak spasial langsung apa yang mengancam wilayah pesisir selatan yang berhadapan dengan posisi siklon tersebut?",
+                options: [
+                    { text: "Kenaikan tinggi gelombang ekstrem dan abrasi kuat (Storm Surge) akibat dorongan angin ke daratan.", isCorrect: true },
+                    { text: "Kekeringan total karena uap air menjauh.", isCorrect: false },
+                    { text: "Gempa bumi tektonik dangkal.", isCorrect: false },
+                    { text: "Penurunan permukaan laut yang drastis.", isCorrect: false }
+                ],
+                pembahasan: "Sirkulasi searah jarum jam di selatan khatulistiwa menyebabkan angin menyapu dan menumpuk massa air laut ke arah daratan pesisir di utaranya, memicu gelombang tinggi merusak (storm surge)."
+            },
+            {
+                question: "21. (Hidrogeologi Krisis) Pasca gempa bumi merusak sistem air kota, sumur dangkal warga menjadi tumpuan. Namun, 1 km di hulu lereng sumur (elevasi lebih tinggi) terdapat tangki limbah pabrik yang bocor akibat gempa. Mengapa sumur dangkal di hilir tidak boleh dikonsumsi langsung?",
+                options: [
+                    { text: "Karena sumur dangkal pasti runtuh strukturnya.", isCorrect: false },
+                    { text: "Karena air tanah mengalir searah gradien hidrolik topografi, memindahkan polutan dari elevasi tinggi ke elevasi rendah.", isCorrect: true },
+                    { text: "Karena air tanah berubah sifat menjadi asam akibat getaran.", isCorrect: false },
+                    { text: "Karena sumur dangkal kehilangan tekanan udara.", isCorrect: false }
+                ],
+                pembahasan: "Polutan terlarut akan bermigrasi mengikuti pergerakan aliran air tanah yang mengalir dari tempat ber-elevasi/gradien tinggi (hulu) menuju tempat yang lebih rendah (hilir sumur warga)."
+            },
+            {
+                question: "22. (Analisis Vegetasi Pelindung) Berdasarkan citra satelit, hutan mangrove di kawasan teluk hilang akibat alih fungsi lahan. Analisis dampak menunjukkan bahwa jika terjadi tsunami dengan magnitudo yang sama dengan masa lalu, kerusakan kota pesisir akan meningkat karena...?",
+                options: [
+                    { text: "Luas daratan berkurang secara drastis.", isCorrect: false },
+                    { text: "Hilangnya kekasaran permukaan spasial (friksi hidro-dinamis) mangrove yang berfungsi mereduksi energi kinetik gelombang.", isCorrect: true },
+                    { text: "Tanah pesisir menjadi lebih empuk ditumpangi air.", isCorrect: false },
+                    { text: "Tsunami menjadi lebih cepat bergerak di air dalam.", isCorrect: false }
+                ],
+                pembahasan: "Mangrove bertindak sebagai barrier alami (green belt). Batang dan akarnya memberikan hambatan mekanis (kekasaran ruang) yang memecah dan meredam energi gelombang sebelum masuk ke pemukiman."
+            },
+            {
+                question: "23. (Peta Kerentanan Komposit) Area Lindung E diterjang banjir luapan setinggi 0,5 meter, namun dihuni mayoritas lansia dengan pendapatan rendah. Area F diterjang banjir 1 meter, namun merupakan kawasan komersial modern dengan sistem pompa mandiri. Prioritas alokasi tim penyelamat (SAR) harus diarahkan ke mana?",
+                options: [
+                    { text: "Area F, karena genangan air dua kali lipat lebih tinggi.", isCorrect: false },
+                    { text: "Area E, karena indeks kerentanan sosial yang tinggi dan rendahnya kapasitas adaptasi mandiri menjadikannya area berisiko fatalitas tertinggi.", isCorrect: true },
+                    { text: "Membagi dua tim secara merata tanpa mempertimbangkan kondisi demografi.", isCorrect: false },
+                    { text: "Area F untuk melindungi aset ekonomi yang berharga.", isCorrect: false }
+                ],
+                pembahasan: "Risiko ditentukan bukan hanya dari parameter fisik (hazard) tapi juga kerentanan (vulnerability) dan kapasitas. Area E memiliki kerentanan fisik manusia yang tinggi dan kapasitas finansial/mobilitas yang sangat rendah."
+            },
+            {
+                question: "24. (Navigasi Aviasi Kebencanaan) Helikopter penyelamat akan mengirimkan bantuan medis ke desa pegunungan yang terisolasi. Laporan cuaca menunjukkan terdapat pertumbuhan awan Cumulonimbus (CB) tebal di celah gunung rute penerbangan. Keputusan operasional berbasis keselamatan spasial yang benar adalah?",
+                options: [
+                    { text: "Tetap terbang rendah di bawah dasar awan.", isCorrect: false },
+                    { text: "Membatalkan / menunda penerbangan (No Go) karena bahaya mutlak downdraft ekstrem dan turbulensi hebat di dalam celah sempit.", isCorrect: true },
+                    { text: "Menaikkan ketinggian terbang di atas awan tanpa instrumen radar.", isCorrect: false },
+                    { text: "Mempercepat laju helikopter untuk menerobos awan.", isCorrect: false }
+                ],
+                pembahasan: "Awan Cumulonimbus di koridor topografi sempit (celah gunung) adalah ancaman maut bagi penerbangan akibat arus udara turun yang ekstrem (downdraft/microburst) yang dapat menghempaskan pesawat."
+            },
+            {
+                question: "25. (Komunikasi Spasial Darurat) Pusat Komando Bencana berada di daerah lembah dalam (shadow zone sinyal), sedangkan pos lapangan evakuasi berada di pesisir terhalang oleh struktur perbukitan tinggi. Komunikasi radio VHF (Line of Sight) terputus total. Rekayasa spasial apa yang harus dilakukan?",
+                options: [
+                    { text: "Meningkatkan daya pancar HT hingga batas maksimal di lembah.", isCorrect: false },
+                    { text: "Mendirikan stasiun pengulang (Repeater) di puncak perbukitan yang memiliki pandangan langsung (Line of Sight) ke kedua pos.", isCorrect: true },
+                    { text: "Menunggu malam hari agar sinyal memantul di atmosfer bawah.", isCorrect: false },
+                    { text: "Mengganti seluruh antena radio dengan kabel tembaga panjang.", isCorrect: false }
+                ],
+                pembahasan: "Gelombang radio VHF merambat lurus dan tidak dapat menembus penghalang tanah/gunung. Menempatkan repeater di titik elevasi tertinggi yang menjangkau kedua area (puncak bukit) adalah solusi topografi komunikasi."
+            }
+        ];
+
+        let geoictCurrentQuestion = 0;
+        let geoictScore = 0;
+        
+        const geoictQText = document.getElementById("geoict-q-text");
+        const geoictQNumber = document.getElementById("geoict-q-number");
+        const geoictOptionsBox = document.getElementById("geoict-options-box");
+        const geoictFeedbackBox = document.getElementById("geoict-feedback-box");
+        const geoictFeedbackTitle = document.getElementById("geoict-feedback-title");
+        const geoictFeedbackText = document.getElementById("geoict-feedback-text");
+        const geoictNextBtn = document.getElementById("geoict-next-btn");
+        const geoictProgressBar = document.getElementById("geoict-progress");
+
+        function geoictLoadQuestion() {
+            const q = geoictQuizData[geoictCurrentQuestion];
+            
+            geoictQNumber.innerText = `Pertanyaan ${geoictCurrentQuestion + 1} dari ${geoictQuizData.length}`;
+            geoictQText.innerText = q.question;
+            
+            geoictOptionsBox.innerHTML = "";
+            geoictFeedbackBox.className = "feedback-box";
+            geoictNextBtn.style.display = "none";
+            
+            const percent = (geoictCurrentQuestion / geoictQuizData.length) * 100;
+            geoictProgressBar.style.width = percent + "%";
+
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement("button");
+                btn.innerText = opt.text;
+                btn.className = "option-btn";
+                btn.onclick = () => geoictSelectAnswer(index, btn);
+                geoictOptionsBox.appendChild(btn);
+            });
+        }
+
+        function geoictSelectAnswer(selectedIndex, btnElement) {
+            const q = geoictQuizData[geoictCurrentQuestion];
+            const buttons = geoictOptionsBox.querySelectorAll(".option-btn");
+            
+            buttons.forEach(b => b.disabled = true);
+
+            if (q.options[selectedIndex].isCorrect) {
+                btnElement.classList.add("correct");
+                geoictScore++;
+                geoictFeedbackTitle.innerText = "Tepat Sekali!";
+                geoictFeedbackTitle.style.color = "var(--quiz-success)";
+                geoictFeedbackBox.style.backgroundColor = "#f0fff4";
+                geoictFeedbackBox.style.borderLeft = "5px solid var(--quiz-success)";
+            } else {
+                btnElement.classList.add("incorrect");
+                q.options.forEach((o, i) => {
+                    if (o.isCorrect) buttons[i].classList.add("correct");
+                });
+                geoictFeedbackTitle.innerText = "Analisis Spasial Kurang Tepat";
+                geoictFeedbackTitle.style.color = "var(--quiz-danger)";
+                geoictFeedbackBox.style.backgroundColor = "#fff5f5";
+                geoictFeedbackBox.style.borderLeft = "5px solid var(--quiz-danger)";
+            }
+
+            geoictFeedbackText.innerHTML = `<strong>Pembahasan HOTS:</strong> ${q.pembahasan}`;
+            geoictFeedbackBox.classList.add("show");
+            geoictNextBtn.style.display = "block";
+            
+            if (geoictCurrentQuestion === geoictQuizData.length - 1) {
+                geoictNextBtn.innerText = "Lihat Analisis Akhir";
+            }
+        }
+
+        function geoictNextQuestion() {
+            geoictCurrentQuestion++;
+            if (geoictCurrentQuestion < geoictQuizData.length) {
+                geoictLoadQuestion();
+            } else {
+                geoictShowResult();
+            }
+        }
+
+        function geoictShowResult() {
+            document.getElementById("geoict-quiz-playboard").style.display = "none";
+            const resultContainer = document.getElementById("geoict-result-container");
+            resultContainer.style.display = "block";
+            geoictProgressBar.style.width = "100%";
+
+            const finalScoreVal = Math.round((geoictScore / geoictQuizData.length) * 100);
+            document.getElementById("geoict-final-score").innerText = finalScoreVal;
+
+            const conclBox = document.getElementById("geoict-conclusion-text");
+            
+            if (finalScoreVal >= 80) {
+                conclBox.innerHTML = `
+                    <h3 style="color:var(--quiz-success); margin-top:0;">Superior (Leader Mitigasi)</h3>
+                    <p>Anda memiliki <strong>Literasi Spasial Kebencanaan tingkat tinggi (HOTS)</strong>. Anda tidak hanya paham teori, namun mampu melakukan perhitungan spasial, geospasial, hidrologi, dan navigasi logistik krisis. Pemahaman luar biasa ini sangat krusial dalam menciptakan <em>herd immunity</em> (kekebalan komunitas) terhadap bencana, karena Anda mampu mengkomunikasikan risiko secara logis dan bertindak sebagai pengambil keputusan di "War Room" saat keadaan darurat sesungguhnya terjadi.</p>`;
+            } else if (finalScoreVal >= 50) {
+                conclBox.innerHTML = `
+                    <h3 style="color:#d69e2e; margin-top:0;">Waspada (Agen Respon)</h3>
+                    <p>Anda memiliki kesadaran dasar tentang risiko keruangan. Anda mampu menyelamatkan diri secara individu, namun masih perlu menajamkan logika matematis spasial (seperti estimasi waktu gelombang, densitas populasi) agar dapat membantu merencanakan evakuasi masif. Terus asah literasi Anda dengan memanfaatkan peta interaktif WebGIS di portal GEOICT ini.</p>`;
+            } else {
+                conclBox.innerHTML = `
+                    <h3 style="color:var(--quiz-danger); margin-top:0;">Rentan (Fase Edukasi Awal)</h3>
+                    <p>Tingkat literasi keruangan (spatial awareness) Anda saat ini berisiko memperparah keadaan saat krisis sesungguhnya (disorientasi arah evakuasi, mengabaikan gejala fisik). Pemahaman bencana bukan sekadar mengetahui definisi, melainkan kalkulasi waktu vs jarak untuk bertahan hidup. Kami menyarankan Anda membaca kembali buku saku mitigasi, berlatih membedakan topografi/elevasi lokal, dan mengulangi kuis ini untuk meningkatkan kewaspadaan naluriah Anda.</p>`;
+            }
+        }
+
+        function geoictResetQuiz() {
+            geoictCurrentQuestion = 0;
+            geoictScore = 0;
+            geoictNextBtn.innerText = "Selanjutnya »";
+            document.getElementById("geoict-result-container").style.display = "none";
+            document.getElementById("geoict-quiz-playboard").style.display = "block";
+            geoictLoadQuestion();
+        }
+
+        // Jalankan kuis otomatis saat komponen dimuat
+        geoictLoadQuestion();
+    </script>
+</div>
+        <!-- CONTENT 1 END -->
+
+        <!-- FOOTER -->
+        <div class="container-footer">
+            <h1 class="h1-footer">Thank you for visiting. I hope you find this useful.</h1>   
+        </div>
+        <!-- FOOTER END -->
+        </div>
+    </body>
+</html>
