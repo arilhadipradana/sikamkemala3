@@ -1,0 +1,299 @@
+<html>
+    <head>
+        <title>KEPO-IN</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+        <!-- NAVIGATION BAR -->
+        <div class="container-navbar">
+          <ul class="ul-navbar">
+            <li class="li-navbar">
+                <a href="#" class="a-navbar">HOME</a>
+            </li>
+            <li class="li-navbar">
+                <a href="about.html" class="a-navbar">SDL</a>
+            </li>
+                                <li class="li-navbar">
+                <a href="quiz.html" class="a-navbar">QUIZ</a>
+            </li>   
+                                            <li class="li-navbar">
+                <a href="kepoin.html" class="a-navbar">KEPO-IN</a>
+            </li>   
+                                     <li class="li-navbar">
+                <a href="simulasi.html" class="a-navbar">SIMULASI</a>
+            </li>
+             <li class="li-navbar">
+                <a href="geo-ict.html" class="a-navbar">GEOICT</a>
+            </li>
+            <li class="li-navbar">
+                <a href="aman.html" class="a-navbar">AMAN</a>
+            </li>
+            <li class="li-navbar">
+                <a href="contact.html" class="a-navbar">DISKUSI YUK</a>
+            </li>
+          </ul>
+        </div>
+          <!-- CONTENT 1 -->
+           <div>
+            <div class="geoict-content-wrapper" style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #2d3748; max-width: 1100px; margin: 40px auto; padding: 0 20px;">
+
+    <section class="geoict-hero" style="text-align: center; margin-bottom: 50px;">
+        <span style="background: #e53e3e; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.8em; letter-spacing: 1px;">KEPO-IN</span>
+        <h1 style="color: #1a365d; font-size: 2.8em; margin: 15px 0;">Kepo Informatif, Inspiratif, dan Inovatif</h1>
+    </section>
+           </div>
+           <!-- MASUKKAN BLOK INI LANGSUNG KE DALAM TAG KONTEN UTAMA/MAIN WEB Anda -->
+<div class="tgs-grid-container">
+    <style>
+        .tgs-grid-container {
+            --clr-mitos: #e11d48;
+            --clr-fakta: #059669;
+            --clr-langka: #7c3aed;
+            --clr-unik: #0284c7;
+            --clr-inklusif: #d97706;
+            --clr-dark: #1e293b;
+            --clr-muted: #64748b;
+            
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tgs-grid-container * { box-sizing: border-box; }
+
+        /* 3D Flip Card Effect */
+        .tgs-card {
+            height: 390px;
+            perspective: 1200px;
+            cursor: pointer;
+        }
+
+        .tgs-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+
+        .tgs-card.flipped .tgs-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .tgs-front, .tgs-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Sisi Depan */
+        .tgs-front {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .tgs-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tgs-emoji {
+            font-size: 2.8em;
+            margin: 10px 0;
+        }
+
+        .tgs-question {
+            font-size: 1.25em;
+            font-weight: 800;
+            color: var(--clr-dark);
+            line-height: 1.5;
+            margin: 0;
+            text-align: left;
+        }
+
+        .tgs-action-hint {
+            font-size: 0.8em;
+            color: var(--clr-muted);
+            font-weight: 600;
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Sisi Belakang */
+        .tgs-back {
+            color: #ffffff;
+            transform: rotateY(180deg);
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+
+        .tgs-back::-webkit-scrollbar { width: 4px; }
+        .tgs-back::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 4px; }
+
+        .tgs-verdict {
+            font-size: 1.6em;
+            font-weight: 900;
+            margin-bottom: 12px;
+            border-bottom: 2px solid rgba(255,255,255,0.25);
+            padding-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .tgs-explain {
+            font-size: 0.95em;
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        .tgs-impact-box {
+            margin-top: auto;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            border-left: 4px solid #ffffff;
+            line-height: 1.4;
+        }
+    </style>
+
+    <!-- CARD 1: LIKUIFAKSI & METODE PEMODELAN MODERN -->
+    <div class="tgs-card" onclick="this.classList.toggle('flipped')">
+        <div class="tgs-card-inner">
+            <div class="tgs-front">
+                <span class="tgs-badge" style="background:#fee2e2; color:var(--clr-mitos)">Mitos vs Fakta</span>
+                <div class="tgs-emoji">🏚️🌊</div>
+                <p class="tgs-question">"Likuifaksi berarti tanah mendadak terbelah menjadi lubang jurang raksasa yang menelan satu kota secara acak?"</p>
+                <div class="tgs-action-hint">👆 Ketuk untuk analisis ilmiah</div>
+            </div>
+            <div class="tgs-back" style="background:var(--clr-mitos)">
+                <div class="tgs-verdict">MITOS & SALAH PAHAM</div>
+                <div class="tgs-explain">Secara geoteknik, likuifaksi terjadi pada tanah pasir jenuh air yang terguncang hebat. Tekanan air pori meningkat drastis sehingga tanah kehilangan kekuatan gesernya dan berubah sifat seperti cairan kental. Bangunan bukan ditelan lubang acak, melainkan kehilangan daya dukung fondasi (bearing capacity) hingga amblas/hanyut.</div>
+                <div class="tgs-impact-box">💡 <b>Kesiapsiagaan Kolektif:</b> Kini teknologi WebGIS dan Machine Learning mampu memetakan mikrozonasi daerah rawan likuifaksi agar penataan ruang kota jadi lebih aman bagi semua generasi.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARD 2: KESIAPSIAGAAN INKLUSIF (NO ONE LEFT BEHIND) -->
+    <div class="tgs-card" onclick="this.classList.toggle('flipped')">
+        <div class="tgs-card-inner">
+            <div class="tgs-front">
+                <span class="tgs-badge" style="background:#fef3c7; color:var(--clr-inklusif)">Budaya Inklusif</span>
+                <div class="tgs-emoji">🚨♿</div>
+                <p class="tgs-question">"Sistem peringatan dini (EWS) bencana nasional sudah dianggap sukses jika sirine suara keras terpasang merata?"</p>
+                <div class="tgs-action-hint">👆 Cek perspektif inklusi sosial</div>
+            </div>
+            <div class="tgs-back" style="background:var(--clr-inklusif)">
+                <div class="tgs-verdict">BELUM INKLUSIF!</div>
+                <div class="tgs-explain">Jika sistem EWS hanya berbasis audio (suara), maka saudara-saudara kita penyandang Tuli (tunarungu) dan kelompok lansia berisiko tertinggal saat evakuasi. Dunia modern menuntut arsitektur mitigasi yang ramah disabilitas tanpa kecuali.</div>
+                <div class="tgs-impact-box">🤝 <b>Budaya Siaga:</b> EWS modern wajib mengintegrasikan lampu strobo visual, getaran pada aplikasi *smartphone*, serta jalur evakuasi yang aksesibel (bebas tangga/berundak) untuk pengguna kursi roda.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARD 3: FAKTA LANGKA - SEICHE DAN DANAU -->
+    <div class="tgs-card" onclick="this.classList.toggle('flipped')">
+        <div class="tgs-card-inner">
+            <div class="tgs-front">
+                <span class="tgs-badge" style="background:#f3e8ff; color:var(--clr-langka)">Hal Langka</span>
+                <div class="tgs-emoji">🏞️🤫</div>
+                <p class="tgs-question">"Apakah air danau atau kolam renang tertutup bisa mendadak berombak ganas meski tidak ada angin kencang?"</p>
+                <div class="tgs-action-hint">👆 Ungkap fenomena langka ini</div>
+            </div>
+            <div class="tgs-back" style="background:var(--clr-langka)">
+                <div class="tgs-verdict">FAKTA LANGKA: SEICHE!</div>
+                <div class="tgs-explain">Fenomena ini bernama *Seiche*. Gelombang seismik dari gempa bumi yang sangat jauh (meski tidak dirasakan manusia di lokasi tersebut) bisa beresonansi dengan frekuensi alami wadah air tertutup, memicu osilasi air yang bergoyang ritmis mirip tsunami mini di kolam/danau.</div>
+                <div class="tgs-impact-box">🚀 <b>Dinamika Teknologi:</b> Sekarang sensor IoT hidro-meteorologi dipasang di berbagai bendungan besar dunia untuk memantau *Seiche* tersembunyi demi menjaga ketahanan bendungan secara berkelanjutan.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARD 4: SOLUSI BERBASIS ALAM (NATURE-BASED SOLUTION) -->
+    <div class="tgs-card" onclick="this.classList.toggle('flipped')">
+        <div class="tgs-card-inner">
+            <div class="tgs-front">
+                <span class="tgs-badge" style="background:#d1fae5; color:var(--clr-fakta)">Sains Berkelanjutan</span>
+                <div class="tgs-emoji">🌳🌊</div>
+                <p class="tgs-question">"Tanggul beton raksasa buatan manusia adalah solusi permanen terbaik mutlak untuk membentengi pesisir dari tsunami?"</p>
+                <div class="tgs-action-hint">👆 Lihat alternatif ekologinya</div>
+            </div>
+            <div class="tgs-back" style="background:var(--clr-fakta)">
+                <div class="tgs-verdict">TIDAK SELALU!</div>
+                <div class="tgs-explain">Tembok beton memiliki masa pakai, mahal, dan rentan hancur akibat tekanan hidrodinamika air yang masif. Pendekatan modern dunia beralih ke *Nature-based Solutions* dengan melestarikan vegetasi hutan mangrove (bakau) dan terumbu karang yang mampu meredam energi gelombang secara alami.</div>
+                <div class="tgs-impact-box">🌿 <b>Kesadaran Berkelanjutan:</b> Menanam mangrove bukan sekadar mitigasi pelindung pesisir, melainkan langkah menjaga keanekaragaman hayati dan penyerapan karbon global jangka panjang.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARD 5: PARADIGMA KEARIFAN LOKAL VS ALGORITMA SATELIT -->
+    <div class="tgs-card" onclick="this.classList.toggle('flipped')">
+        <div class="tgs-card-inner">
+            <div class="tgs-front">
+                <span class="tgs-badge" style="background:#e0f2fe; color:var(--clr-unik)">Hal Unik</span>
+                <div class="tgs-emoji">📖📡</div>
+                <p class="tgs-question">"Di era modern serba satelit, apakah dongeng dan tradisi lokal kuno soal bencana masih punya nilai ilmiah?"</p>
+                <div class="tgs-action-hint">👆 Ketuk untuk korelasi sejarah</div>
+            </div>
+            <div class="tgs-back" style="background:var(--clr-unik)">
+                <div class="tgs-verdict">SANGAT BERNILAI!</div>
+                <div class="tgs-explain">Teknologi bisa malfungsi saat infrastruktur listrik hancur total diguncang gempa. Sejarah mencatat budaya lisan *Smong* (cerita turun-temurun mengamati air laut surut) di Pulau Simeulue berhasil menyelamatkan ribuan nyawa pada Tsunami 2004 tanpa bantuan teknologi digital terpusat.</div>
+                <div class="tgs-impact-box">🧠 <b>Resiliensi Kolektif:</b> Integrasi terbaik abad modern adalah mengawinkan keakuratan data sensor WebGIS dengan *Social Memory* (ingatan sosial) lokal agar kesadaran siaga mendarat kuat di benak masyarakat.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARD 6: MEKANISME EARLIER WARNING SYSTEM (EWS) -->
+    <div class="tgs-card" onclick="this.classList.toggle('flipped')">
+        <div class="tgs-card-inner">
+            <div class="tgs-front">
+                <span class="tgs-badge" style="background:#fee2e2; color:var(--clr-mitos)">Benar / Salah</span>
+                <div class="tgs-emoji">⚡📱</div>
+                <p class="tgs-question">"Sinyal peringatan gempa di ponsel pintar bekerja karena AI berhasil memprediksi menit dan jam bumi akan patah?"</p>
+                <div class="tgs-action-hint">👆 Bedah mekanisme fisika gelombang</div>
+            </div>
+            <div class="tgs-back" style="background:var(--clr-mitos)">
+                <div class="tgs-verdict">SALAH TOTAL!</div>
+                <div class="tgs-explain">Sains belum mampu meramal detik pasti gempa. EWS bekerja memanfaatkan selisih kecepatan gelombang seismik. Saat patahan bumi terjadi, muncul Gelombang P (cepat tapi tidak merusak) dan Gelombang S (lambat namun destruktif). Sensor canggih menangkap Gelombang P terlebih dahulu, lalu mengirim sinyal digital ke ponsel Anda secepat kecepatan cahaya sebelum Gelombang S yang merusak sampai di lokasi Anda.</div>
+                <div class="tgs-impact-box">⏱️ <b>Waktu Emas:</b> Pemanfaatan sistem telekomunikasi canggih ini memberikan waktu emas (golden time) beberapa detik bagi individu untuk merunduk dan mencari perlindungan mandiri.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- CONTENT 1 END -->
+      <!-- NAVIGATION BAR SELESAI -->
+
+        <!-- FOOTER -->
+        <div class="container-footer">
+            <h1 class="h1-footer">Thank you for visiting. I hope you find this useful.</h1>   
+        </div>
+        <!-- FOOTER END -->
+        </div>
+    </body>
+    </body>
+</html>
