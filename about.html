@@ -1,0 +1,285 @@
+<html>
+    <head>
+        <title>SDL</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+        <!-- NAVIGATION BAR -->
+        <div class="container-navbar">
+          <ul class="ul-navbar">
+            <li class="li-navbar">
+                <a href="index.html" class="a-navbar">HOME</a>
+            </li>
+            <li class="li-navbar">
+                <a href="about.html" class="a-navbar">SDL</a>
+            </li>
+                                <li class="li-navbar">
+                <a href="quiz.html" class="a-navbar">QUIZ</a>
+            </li>   
+                                                        <li class="li-navbar">
+                <a href="kepoin.html" class="a-navbar">KEPO-IN</a>
+            </li>   
+                                     <li class="li-navbar">
+                <a href="simulasi.html" class="a-navbar">SIMULASI</a>
+            </li>
+             <li class="li-navbar">
+                <a href="geo-ict.html" class="a-navbar">GEOICT</a>
+            </li>
+            <li class="li-navbar">
+                <a href="aman.html" class="a-navbar">AMAN</a>
+            </li>
+            <li class="li-navbar">
+                <a href="contact.html" class="a-navbar">DISKUSI YUK</a>
+            </li>
+          </ul>
+        </div>
+        <!-- NAVIGATION BAR SELESAI -->
+
+        <!-- CONTENT 1 -->
+<section class="sdl-section">
+    <div class="sdl-box">
+        <div class="sdl-header">
+            <h2>Spatial Disaster Literacy (SDL)</h2>
+            <hr class="divider-center">
+            <p class="sdl-description">
+                Kenali ancamannya, siapkan strateginya, dan kurangi risikonya. Pahami tahapan manajemen bencana di lingkungan sekitarmu melalui panduan interaktif di bawah ini.
+            </p>
+        </div>
+
+        <div class="literacy-grid">
+            <div class="literacy-card">
+                <div class="card-icon">🗺️</div>
+                <h3>1. Kenali Ruang & Ancaman</h3>
+                <p>Pahami kondisi geografis lingkunganmu. Cek apakah daerahmu berada di zona rawan gempa, banjir, atau longsor menggunakan peta risiko.</p>
+            </div>
+
+            <div class="literacy-card">
+                <div class="card-icon">🛡️</div>
+                <h3>2. Kesiapsiagaan Bencana</h3>
+                <p>Hafalkan rute jalur evakuasi, siapkan Tas Siaga Bencana darurat, dan kenali bunyi sirine atau kentongan peringatan dini di desamu.</p>
+            </div>
+
+            <div class="literacy-card">
+                <div class="card-icon">🏃🏽‍♂️</div>
+                <h3>3. Tanggap Darurat</h3>
+                <p>Saat bencana terjadi, jangan panik. Ikuti rambu evakuasi menuju titik kumpul (assembly point) dan jauhi area zona merah.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="transition-container">
+    <p>Sudah paham dasar-dasarnya? Mari kita simulasikan risikonya! 👇</p>
+</div>
+
+<section class="simulator-section">
+    <div class="simulator-box">
+        <div class="simulator-header">
+            <h2>Simulator Risiko Spasial</h2>
+            <p>Pilih kondisi lingkunganmu saat ini untuk melihat tingkat risiko bencananya.</p>
+        </div>
+
+        <div class="simulator-content">
+            <div class="parameter-form">
+                <div class="param-group hazard">
+                    <label>🌋 Tingkat Bahaya (Jarak dari sumber bencana)</label>
+                    <select id="param-bahaya" onchange="hitungRisiko()">
+                        <option value="1">Rendah (Sangat jauh dan aman)</option>
+                        <option value="2" selected>Sedang (Jarak menengah)</option>
+                        <option value="3">Tinggi (Sangat dekat dengan laut/lereng curam)</option>
+                    </select>
+                </div>
+
+                <div class="param-group vulnerability">
+                    <label>🏘️ Tingkat Kerentanan (Kepadatan penduduk)</label>
+                    <select id="param-rentan" onchange="hitungRisiko()">
+                        <option value="1">Rendah (Penduduk sedikit, bangunan kokoh)</option>
+                        <option value="2" selected>Sedang (Kepadatan rata-rata)</option>
+                        <option value="3">Tinggi (Sangat padat, banyak lansia/anak-anak)</option>
+                    </select>
+                </div>
+
+                <div class="param-group capacity">
+                    <label>🛡️ Tingkat Kapasitas (Kesiapan warga)</label>
+                    <select id="param-kapasitas" onchange="hitungRisiko()">
+                        <option value="1">Rendah (Tidak ada peringatan dini & jalur evakuasi)</option>
+                        <option value="2" selected>Sedang (Ada rute evakuasi tapi jarang latihan)</option>
+                        <option value="3">Tinggi (Fasilitas lengkap & warga sering simulasi)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="result-dashboard">
+                <h3>Skor Risiko</h3>
+                <div id="skor-angka" class="skor-angka">...</div>
+                <div id="status-risiko" class="status-risiko">Menghitung...</div>
+                <p class="rumus-text">Rumus: (Bahaya × Kerentanan) ÷ Kapasitas</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function hitungRisiko() {
+        let h = parseFloat(document.getElementById('param-bahaya').value);
+        let v = parseFloat(document.getElementById('param-rentan').value);
+        let c = parseFloat(document.getElementById('param-kapasitas').value);
+
+        let risiko = (h * v) / c;
+        let skorFinal = risiko.toFixed(1); 
+
+        document.getElementById('skor-angka').innerText = skorFinal;
+
+        let statusElement = document.getElementById('status-risiko');
+        
+        if (risiko <= 1.5) {
+            statusElement.innerText = "Risiko Rendah";
+            statusElement.style.backgroundColor = "#2e7d32"; 
+        } else if (risiko <= 3.5) {
+            statusElement.innerText = "Risiko Sedang";
+            statusElement.style.backgroundColor = "#f9a825"; 
+            statusElement.style.color = "#000"; // Teks hitam agar terbaca di kuning
+        } else {
+            statusElement.innerText = "Risiko Tinggi";
+            statusElement.style.backgroundColor = "#b00000"; 
+            statusElement.style.color = "#fff";
+        }
+    }
+
+    // Jalankan otomatis saat web dibuka
+    window.onload = hitungRisiko;
+</script>
+
+        <!-- CONTENT 1 END -->
+
+        <!-- FOOTER -->
+        <div class="container-footer">
+            <h1 class="h1-footer">Thank you for visiting. I hope you find this useful.</h1>   
+        </div>
+        <!-- FOOTER END -->
+        </div>
+        <script>
+    // Data Soal HOTS (Mengandung analisis spasial mendalam)
+    const dataKuis = [
+        {
+            id: 1,
+            pertanyaan: "1. Sebuah desa pesisir di Pesisir Barat berada pada elevasi 2 mdpl. Sistem Peringatan Dini mendeteksi potensi Tsunami yang akan tiba dalam waktu 15 menit. Terdapat shelter evakuasi di bukit (elevasi 25 mdpl) yang berjarak 1,2 km ke arah darat. Jika rute evakuasi memiliki kemiringan rata-rata konstan dan warga mengevakuasi diri dengan berjalan kaki (kecepatan rata-rata manusia di jalan menanjak adalah 60 meter/menit), apakah warga dapat selamat dan apa alasannya?",
+            pilihan: [
+                { id: "A", teks: "A. Selamat, karena warga membutuhkan waktu tepat 15 menit untuk sampai." },
+                { id: "B", teks: "B. Tidak selamat, karena warga membutuhkan waktu 20 menit untuk mencapai shelter." },
+                { id: "C", teks: "C. Selamat, karena kecepatan lari air laut lebih lambat dari kecepatan jalan warga." },
+                { id: "D", teks: "D. Tidak selamat, karena elevasi bukit 25 mdpl belum tentu aman dari gelombang." }
+            ],
+            jawabanBenar: "B",
+            pembahasan: "<b>Jawaban Benar: B.</b><br>Analisis Jarak & Waktu (Spasial): Warga harus menempuh jarak 1,2 km (1.200 meter). Dengan kecepatan jalan nanjak 60 m/menit, waktu tempuh (t) = Jarak (s) / Kecepatan (v) = 1.200 m / 60 m/menit = 20 menit. Karena Tsunami tiba dalam 15 menit, warga yang hanya berjalan kaki tidak akan selamat (terlambat 5 menit). Keputusan mitigasinya: warga harus berlari atau menggunakan kendaraan."
+        },
+        {
+            id: 2,
+            pertanyaan: "2. Masyarakat di Liwa, Lampung Barat ingin mendirikan posko pengungsian di sebuah lahan. Pada peta topografi berskala 1:50.000, jarak dari posko (titik A) menuju lereng perbukitan terdekat (titik B) adalah 4 cm. Jika elevasi titik A adalah 800 mdpl dan titik B adalah 1.000 mdpl, berapakah persentase kemiringan lerengnya, dan apakah lokasi tersebut aman dari bahaya longsor?",
+            pilihan: [
+                { id: "A", teks: "A. Kemiringan 5%, sangat aman untuk posko." },
+                { id: "B", teks: "B. Kemiringan 10%, relatif aman untuk posko." },
+                { id: "C", teks: "C. Kemiringan 20%, rawan longsor, posko harus dipindahkan." },
+                { id: "D", teks: "D. Kemiringan 40%, sangat rawan longsor, posko harus dipindahkan." }
+            ],
+            jawabanBenar: "B",
+            pembahasan: "<b>Jawaban Benar: B.</b><br>Kalkulasi Spasial:<br>1. Jarak Sebenarnya (d) = Jarak Peta × Skala = 4 cm × 50.000 = 200.000 cm = 2.000 meter.<br>2. Beda Tinggi (Δh) = 1.000 mdpl - 800 mdpl = 200 meter.<br>3. Rumus Kemiringan (%) = (Δh / d) × 100% = (200 / 2.000) × 100% = 10%.<br>Berdasarkan klasifikasi Van Zuidam, kemiringan 10% tergolong landai/miring (8-15%), sehingga secara spasial relatif aman, tidak termasuk zona merah longsor (>15%)."
+        },
+        {
+            id: 3,
+            pertanyaan: "3. Gunung Anak Krakatau berstatus Siaga (Level III). BNPB menetapkan radius Kawasan Rawan Bencana (KRB) sejauh 5 km dari kawah aktif. Jika Anda menggunakan Peta Rupa Bumi digital dengan skala 1:25.000, berapakah panjang jari-jari zona 'buffer' (penyangga) merah yang harus Anda gambar di atas layar peta tersebut untuk memetakan kawasan bahaya?",
+            pilihan: [
+                { id: "A", teks: "A. 2 cm" },
+                { id: "B", teks: "B. 5 cm" },
+                { id: "C", teks: "C. 20 cm" },
+                { id: "D", teks: "D. 50 cm" }
+            ],
+            jawabanBenar: "C",
+            pembahasan: "<b>Jawaban Benar: C.</b><br>Analisis Skala Geospasial: Konsep dasar <i>buffering</i> spasial. Jarak sebenarnya (KRB) = 5 km = 500.000 cm. Skala peta = 1 : 25.000. Maka Jarak pada Peta = Jarak Sebenarnya / Skala = 500.000 cm / 25.000 = 20 cm. Anda harus menggambar lingkaran bahaya dengan jari-jari 20 cm di peta tersebut."
+        }
+    ];
+
+    // Fungsi Render Kuis ke Layar
+    function muatKuis() {
+        const wadahKuis = document.getElementById("quiz-body");
+        wadahKuis.innerHTML = ""; // Bersihkan isi
+        
+        dataKuis.forEach((soal, index) => {
+            let elemenSoal = `<div class="question-block">
+                <p class="question-text">${soal.pertanyaan}</p>
+                <div class="options-group">`;
+            
+            soal.pilihan.forEach(opsi => {
+                elemenSoal += `
+                    <label class="option-label">
+                        <input type="radio" name="soal${index}" value="${opsi.id}">
+                        <span>${opsi.teks}</span>
+                    </label>`;
+            });
+            
+            elemenSoal += `</div></div>`;
+            wadahKuis.innerHTML += elemenSoal;
+        });
+    }
+
+    // Fungsi Koreksi & Hitung Nilai
+    function koreksiKuis() {
+        let skor = 0;
+        let bobot = 100 / dataKuis.length;
+        const wadahPembahasan = document.getElementById("pembahasan-container");
+        wadahPembahasan.innerHTML = "<h3>Analisis & Pembahasan Spasial:</h3>";
+
+        let semuaTerjawab = true;
+
+        dataKuis.forEach((soal, index) => {
+            const jawabanUser = document.querySelector(`input[name="soal${index}"]:checked`);
+            
+            if (!jawabanUser) {
+                semuaTerjawab = false;
+            } else if (jawabanUser.value === soal.jawabanBenar) {
+                skor += bobot;
+            }
+
+            // Tampilkan Pembahasan
+            wadahPembahasan.innerHTML += `
+                <div class="pembahasan-item">
+                    <h4>Review Soal ${index + 1}</h4>
+                    <p>${soal.pembahasan}</p>
+                </div>
+            `;
+        });
+
+        if (!semuaTerjawab) {
+            alert("Harap jawab semua pertanyaan spasial terlebih dahulu!");
+            return;
+        }
+
+        // Tampilkan Hasil
+        document.getElementById("skor-akhir").innerText = Math.round(skor);
+        document.getElementById("btn-submit-quiz").classList.add("hidden");
+        document.getElementById("quiz-result").classList.remove("hidden");
+
+        // Analisis Simpulan Berdasarkan Skor
+        const teksSimpulan = document.getElementById("teks-simpulan");
+        if (skor === 100) {
+            teksSimpulan.innerHTML = "<b>Luar Biasa! (Expert Spatial Thinker)</b> Anda memiliki insting keruangan dan kalkulasi mitigasi yang sangat akurat. Anda memahami bahwa menyelamatkan diri dari bencana bukan sekadar berlari, tetapi memperhitungkan variabel kecepatan, jarak elevasi, dan membaca tata ruang (skala & buffer). Anda siap menjadi agen perubahan AMAN di Provinsi Lampung!";
+        } else if (skor > 50) {
+            teksSimpulan.innerHTML = "<b>Baik (Intermediate Spatial Thinker).</b> Anda sudah memahami konsep dasar keruangan mitigasi bencana. Namun, perhatikan kembali cara menghitung kemiringan lereng atau mengonversi jarak peta untuk memastikan keputusan evakuasi dan relokasi bangunan Anda presisi.";
+        } else {
+            teksSimpulan.innerHTML = "<b>Perlu Ditingkatkan (Beginner).</b> Jangan berkecil hati. Bencana alam adalah peristiwa yang diatur oleh hukum fisika dan geografi bumi. Pelajari kembali materi literasi di atas, terutama tentang cara membaca skala peta dan menghitung waktu evakuasi berdasarkan elevasi wilayah Anda.";
+        }
+    }
+
+    // Fungsi Ulang Kuis
+    function ulangKuis() {
+        document.getElementById("quiz-result").classList.add("hidden");
+        document.getElementById("btn-submit-quiz").classList.remove("hidden");
+        muatKuis(); // Acak ulang atau kosongkan form
+    }
+
+    // Jalankan kuis saat web dibuka
+    window.onload = muatKuis;
+</script>
+    </body>
+</html>
